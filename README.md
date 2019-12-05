@@ -1,16 +1,12 @@
 <p align="center">
-	<h3 align="center">jest-html-reporter</h3>
+	<h3 align="center">jest-html-reporter-x</h3>
 	<p align="center">
 		A <a href="https://github.com/facebook/jest">Jest</a> test results processor for generating a summary in HTML.
 		<br>
 		<a href="https://github.com/Hargne/jest-html-reporter/wiki"><strong>Documentation »</strong></a>
 		<br />
 		<br />
-		<img src="https://img.shields.io/npm/dm/jest-html-reporter?style=for-the-badge" alt="">
-		<img src="https://img.shields.io/travis/com/hargne/jest-html-reporter?style=for-the-badge">
-		<br />
-		<br />
-		Inspired by <a href="https://github.com/matthias-schuetz/karma-htmlfile-reporter">karma-htmlfile-reporter</a>
+		This project was forked from Johan Hargne's <a href=https://github.com/Hargne/jest-html-reporter> jest-html-reporter</a> and inspired by <a href="https://github.com/matthias-schuetz/karma-htmlfile-reporter">karma-htmlfile-reporter</a>
 		<br />
 		<br />
 		<hr />
@@ -22,7 +18,7 @@
 
 ## Installation
 ```shell
-npm install jest-html-reporter --save-dev
+npm install jest-html-reporter-x --save-dev
 ```
 
 ## Usage
@@ -30,7 +26,7 @@ Configure Jest to process the test results by adding the following entry to the 
 ```JSON
 "reporters": [
 	"default",
-	["./node_modules/jest-html-reporter", {
+	["./node_modules/jest-html-reporter-x", {
 		"pageTitle": "Test Report"
 	}]
 ]
@@ -43,7 +39,7 @@ There are multiple configuration options available. To read more about these, pl
 To run the reporter as a test results processor (after Jest is complete instead of running in parallel), add the following entry to the Jest config (jest.config.json):
 ```JSON
 {
-	"testResultsProcessor": "./node_modules/jest-html-reporter"
+	"testResultsProcessor": "./node_modules/jest-html-reporter-x"
 }
 ```
 
@@ -75,6 +71,7 @@ Please note that all configuration properties are optional.
 | `sort` | `STRING` | Sorts the test results using the given method. Available sorting methods can be found in the [documentation](https://github.com/Hargne/jest-html-reporter/wiki/Sorting-Methods). | `"default"`
 | `statusIgnoreFilter` | `STRING` | A comma-separated string of the test result statuses that should be ignored when rendering the report. Available statuses are: `"passed"`, `"pending"`, `"failed"` | `null`
 | `boilerplate` | `STRING` | The path to a boilerplate file that should be used to render the body of the test results into. `{jesthtmlreporter-content}` within the boilerplate will be replaced with the test results | `null`
+| `append` *NEW | `BOOLEAN` | If set to true, new test results will be appended to the existing test report | `false`
 
 > *The plugin will search for the *styleOverridePath* from the root directory, therefore there is no need to prepend the string with `./` or `../` - You can read more about the themes in the [documentation](https://github.com/Hargne/jest-html-reporter/wiki/Test-Report-Themes).
 

@@ -16,7 +16,7 @@ const logMessage = ({ type, msg, ignoreConsole }) => {
 		error: '\x1b[31m%s\x1b[0m',
 	};
 	const logColor = (!logTypes[type]) ? logTypes.default : logTypes[type];
-	const logMsg = `jest-html-reporter >> ${msg}`;
+	const logMsg = `jest-html-reporter-x >> ${msg}`;
 	if (!ignoreConsole) {
 		console.log(logColor, logMsg); // eslint-disable-line
 	}
@@ -36,6 +36,25 @@ const writeFile = ({ filePath, content }) => new Promise((resolve, reject) => {
 		return fs.writeFile(filePath, content, (writeFileError) => {
 			if (writeFileError) {
 				return reject(new Error(`Something went wrong when creating the file: ${writeFileError}`));
+			}
+			return resolve(filePath);
+		});
+	});
+});
+
+/**
+ * Appends a file at the given destination
+ * @param  {String} filePath
+ * @param  {Any} 	content
+ */
+const appendFile = ({ filePath, content }) => new Promise((resolve, reject) => {
+	mkdirp(path.dirname(filePath), (mkdirpError) => {
+		if (mkdirpError) {
+			return reject(new Error(`Something went wrong when creating the folder: ${mkdirpError}`));
+		}
+		return fs.appendFile(filePath, content, (writeFileError) => {
+			if (writeFileError) {
+				return reject(new Error(`Something went wrong when appending the file: ${writeFileError}`));
 			}
 			return resolve(filePath);
 		});
@@ -90,6 +109,7 @@ const sortAlphabetically = ({ a, b, reversed }) => {
 module.exports = {
 	logMessage,
 	writeFile,
+	appendFile,
 	getFileContent,
 	createHtmlBase,
 	sortAlphabetically,
